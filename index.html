@@ -9,8 +9,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Bauhaus-inspired off-white background */
-            background-color: #F0F0F0;
+            background-color: #F1E9DB; /* Parchment */
         }
         .slide {
             display: none;
@@ -21,67 +20,73 @@
         .slide-container {
             min-height: 80vh;
         }
-        /* Custom Bauhaus colors for easier access */
-        .bauhaus-red { color: #E20613; }
-        .bg-bauhaus-red { background-color: #E20613; }
-        .border-bauhaus-red { border-color: #E20613; }
+        
+        /* Modern Cartographer Palette */
+        .bg-slate-blue { background-color: #3D5A6C; }
+        .text-slate-blue { color: #3D5A6C; }
+        .border-slate-blue { border-color: #3D5A6C; }
 
-        .bauhaus-yellow { color: #FDD100; }
-        .bg-bauhaus-yellow { background-color: #FDD100; }
-        .border-bauhaus-yellow { border-color: #FDD100; }
+        .bg-parchment { background-color: #F1E9DB; }
+        .text-parchment { color: #F1E9DB; }
 
-        .bauhaus-blue { color: #0054A6; }
-        .bg-bauhaus-blue { background-color: #0054A6; }
-        .border-bauhaus-blue { border-color: #0054A6; }
+        .bg-burnt-orange { background-color: #D96C06; }
+        .text-burnt-orange { color: #D96C06; }
+        .border-burnt-orange { border-color: #D96C06; }
+
+        .bg-deep-moss { background-color: #3A4F41; }
+        .text-deep-moss { color: #3A4F41; }
+        .border-deep-moss { border-color: #3A4F41; }
+        
+        .text-charcoal { color: #2F2F2F; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
-    <div class="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div class="w-full max-w-4xl mx-auto bg-parchment rounded-2xl shadow-2xl overflow-hidden">
         <div id="presentation-container">
             <!-- Slide 1: Title Slide -->
             <div class="slide active">
-                <div class="p-8 md:p-16 bg-black text-white flex flex-col items-center justify-center text-center slide-container">
+                <div class="p-8 md:p-16 bg-slate-blue text-parchment flex flex-col items-center justify-center text-center slide-container">
                     <h1 class="text-4xl md:text-6xl font-bold mb-4">Curated Routes</h1>
-                    <p class="text-xl md:text-2xl text-gray-200">A Strategic Blueprint for YouTube Success</p>
+                    <p class="text-xl md:text-2xl opacity-90">A Strategic Blueprint for YouTube Success</p>
                     <div class="mt-8">
-                         <div class="w-24 h-2 bg-bauhaus-yellow"></div>
+                         <div class="w-24 h-2 bg-burnt-orange"></div>
                     </div>
                 </div>
             </div>
 
             <!-- Slide 2: Executive Summary -->
             <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-white">
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b-4 border-bauhaus-red pb-2">Executive Summary</h2>
-                    <ul class="space-y-4 text-lg text-gray-800">
-                        <li class="flex items-start"><span class="bauhaus-red mr-3 mt-1">&#10148;</span><span>The walking tour genre is a mature, competitive market with a sophisticated audience.</span></li>
-                        <li class="flex items-start"><span class="bauhaus-red mr-3 mt-1">&#10148;</span><span>Success hinges on meeting the "Gold Standard" of production: <strong>4K HDR, 60fps, and immersive binaural audio</strong>.</span></li>
-                        <li class="flex items-start"><span class="bauhaus-red mr-3 mt-1">&#10148;</span><span>Viewers seek therapeutic escapism, relaxation, and meticulous trip-planning tools.</span></li>
-                        <li class="flex items-start"><span class="bauhaus-red mr-3 mt-1">&#10148;</span><span><strong>Key Opportunity:</strong> Differentiate by blending pure ambiance with subtle, non-intrusive informational overlays to serve underserved "Planners."</span></li>
+                <div class="p-8 md:p-12 slide-container bg-parchment">
+                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Executive Summary</h2>
+                    <ul class="space-y-4 text-lg text-charcoal">
+                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span>The walking tour genre is a mature, competitive market with a sophisticated audience.</span></li>
+                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span>Success hinges on meeting the "Gold Standard" of production: <strong>4K HDR, 60fps, and immersive binaural audio</strong>.</span></li>
+                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span>Viewers seek therapeutic escapism, relaxation, and meticulous trip-planning tools.</span></li>
+                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span><strong>Key Opportunity:</strong> Differentiate by blending pure ambiance with subtle, non-intrusive informational overlays to serve underserved "Planners."</span></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Slide 3: Target Audience Personas -->
             <div class="slide">
-                 <div class="p-8 md:p-12 slide-container bg-white">
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b-4 border-bauhaus-red pb-2">Decoding the Viewer Psyche</h2>
+                 <div class="p-8 md:p-12 slide-container bg-parchment">
+                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Decoding the Viewer Psyche</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-lg border-l-8 border-bauhaus-yellow shadow-md">
-                            <h3 class="text-xl font-semibold text-black mb-2">1. The Ambiance Seeker</h3>
-                            <p class="text-gray-700">Uses videos for relaxation, stress-reduction, and sleep. <strong class="text-black">Needs:</strong> Immersive, uninterrupted, high-fidelity audio-visuals.</p>
+                        <div class="bg-white/50 p-6 rounded-lg border-l-8 border-slate-blue shadow-md">
+                            <h3 class="text-xl font-semibold text-charcoal mb-2">1. The Ambiance Seeker</h3>
+                            <p class="text-charcoal/80">Uses videos for relaxation, stress-reduction, and sleep. <strong class="text-charcoal">Needs:</strong> Immersive, uninterrupted, high-fidelity audio-visuals.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-lg border-l-8 border-bauhaus-red shadow-md">
-                            <h3 class="text-xl font-semibold text-black mb-2">2. The Meticulous Planner</h3>
-                            <p class="text-gray-700">Researches future travel. <strong class="text-black">Needs:</strong> Authentic "on-the-ground" views, context, route maps, and practical tips.</p>
+                        <div class="bg-white/50 p-6 rounded-lg border-l-8 border-burnt-orange shadow-md">
+                            <h3 class="text-xl font-semibold text-charcoal mb-2">2. The Meticulous Planner</h3>
+                            <p class="text-charcoal/80">Researches future travel. <strong class="text-charcoal">Needs:</strong> Authentic "on-the-ground" views, context, route maps, and practical tips.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-lg border-l-8 border-bauhaus-blue shadow-md">
-                            <h3 class="text-xl font-semibold text-black mb-2">3. The Nostalgic Traveler</h3>
-                            <p class="text-gray-700">Reconnects with past locations. <strong class="text-black">Needs:</strong> Authentic capture of a place's evolving character.</p>
+                        <div class="bg-white/50 p-6 rounded-lg border-l-8 border-deep-moss shadow-md">
+                            <h3 class="text-xl font-semibold text-charcoal mb-2">3. The Nostalgic Traveler</h3>
+                            <p class="text-charcoal/80">Reconnects with past locations. <strong class="text-charcoal">Needs:</strong> Authentic capture of a place's evolving character.</p>
                         </div>
-                         <div class="bg-white p-6 rounded-lg border-l-8 border-black shadow-md">
-                            <h3 class="text-xl font-semibold text-black mb-2">4. The Tech & Gear Enthusiast</h3>
-                            <p class="text-gray-700">Fascinated by production quality. <strong class="text-black">Needs:</strong> Technical transparency (gear lists) and top-tier execution.</p>
+                         <div class="bg-white/50 p-6 rounded-lg border-l-8 border-charcoal/50 shadow-md">
+                            <h3 class="text-xl font-semibold text-charcoal mb-2">4. The Tech & Gear Enthusiast</h3>
+                            <p class="text-charcoal/80">Fascinated by production quality. <strong class="text-charcoal">Needs:</strong> Technical transparency (gear lists) and top-tier execution.</p>
                         </div>
                     </div>
                 </div>
@@ -89,29 +94,29 @@
 
             <!-- Slide 4: Competitive Landscape -->
             <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-white">
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b-4 border-bauhaus-red pb-2">Competitive Landscape</h2>
+                <div class="p-8 md:p-12 slide-container bg-parchment">
+                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Competitive Landscape</h2>
                     <div class="space-y-4">
                         <div>
-                            <h3 class="text-xl font-semibold text-black">The Titans: Setting the Standard</h3>
-                             <p class="text-gray-700">Channels like <strong>VIRTUAL JAPAN, Prowalk Tours, and Nomadic Ambience</strong> dominate through geographic focus or pure ambiance, setting high audience expectations.</p>
+                            <h3 class="text-xl font-semibold text-charcoal">The Titans: Setting the Standard</h3>
+                             <p class="text-charcoal/80">Channels like <strong>VIRTUAL JAPAN, Prowalk Tours, and Nomadic Ambience</strong> dominate through geographic focus or pure ambiance, setting high audience expectations.</p>
                         </div>
                         <div class="overflow-x-auto">
-                           <table class="min-w-full bg-white mt-2 rounded-lg shadow-md">
-                                <thead class="bg-black text-white">
+                           <table class="min-w-full bg-white/50 mt-2 rounded-lg shadow-md">
+                                <thead class="bg-slate-blue text-parchment">
                                     <tr>
                                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Channel</th>
                                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Subscribers</th>
                                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Avg. Views</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-gray-800">
+                                <tbody class="text-charcoal">
                                     <tr>
                                         <td class="text-left py-3 px-4">Nomadic Ambience</td>
                                         <td class="text-left py-3 px-4">1.3M</td>
                                         <td class="text-left py-3 px-4">520k</td>
                                     </tr>
-                                    <tr class="bg-gray-100">
+                                    <tr class="bg-slate-blue/10">
                                         <td class="text-left py-3 px-4">Prowalk Tours</td>
                                         <td class="text-left py-3 px-4">733k</td>
                                         <td class="text-left py-3 px-4">345k</td>
@@ -125,8 +130,8 @@
                             </table>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold text-black mt-4">Key Takeaway</h3>
-                            <p class="text-gray-700">Success comes from hyper-specialization (location/theme) or by becoming a reliable source for high-quality global tours.</p>
+                            <h3 class="text-xl font-semibold text-charcoal mt-4">Key Takeaway</h3>
+                            <p class="text-charcoal/80">Success comes from hyper-specialization (location/theme) or by becoming a reliable source for high-quality global tours.</p>
                         </div>
                     </div>
                 </div>
@@ -134,65 +139,65 @@
             
             <!-- Slide 5: Content Strategy -->
             <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-white">
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b-4 border-bauhaus-red pb-2">Content Strategy: The Formula</h2>
-                     <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-8 md:p-12 slide-container bg-parchment">
+                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Content Strategy: The Formula</h2>
+                     <div class="grid md:grid-cols-2 gap-6 text-charcoal">
                         <div>
-                            <h3 class="text-xl font-semibold text-black mb-2">Location & Atmosphere</h3>
-                            <ul class="list-disc list-inside text-gray-800 space-y-2">
+                            <h3 class="text-xl font-semibold mb-2">Location & Atmosphere</h3>
+                            <ul class="list-disc list-inside space-y-2 opacity-90">
                                 <li><strong>Top Tier Locations:</strong> Tokyo, London, Paris, Seoul.</li>
                                 <li><strong>Atmosphere is Key:</strong> Rain, snow, night walks, and golden hour are highly sought after.</li>
                                 <li><strong>Events:</strong> Christmas lights & Sakura season are huge drivers.</li>
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold text-black mb-2">Video Format Mix</h3>
-                            <ul class="list-disc list-inside text-gray-800 space-y-2">
+                            <h3 class="text-xl font-semibold mb-2">Video Format Mix</h3>
+                            <ul class="list-disc list-inside space-y-2 opacity-90">
                                 <li><strong>Flagship Walks (40-90 min):</strong> Core immersive content.</li>
                                 <li><strong>Ultra-Long Compilations (3-8+ hrs):</strong> Serve sleep/study audience and boost watch time.</li>
                                 <li><strong>Shorts (15-60s):</strong> Repurpose highlights for discoverability.</li>
                             </ul>
                         </div>
                     </div>
-                     <div class="mt-8 bg-bauhaus-yellow/20 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-black">The "Curated" Differentiator</h3>
-                        <p class="text-gray-800 mt-2">Implement minimalist, non-intrusive on-screen text overlays with facts, history, or context. This serves the "Planner" audience without breaking immersion for "Ambiance Seekers" — fulfilling the brand promise of <strong>"Curated Routes."</strong></p>
+                     <div class="mt-8 bg-slate-blue/10 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-charcoal">The "Curated" Differentiator</h3>
+                        <p class="text-charcoal/90 mt-2">Implement minimalist, non-intrusive on-screen text overlays with facts, history, or context. This serves the "Planner" audience without breaking immersion for "Ambiance Seekers" — fulfilling the brand promise of <strong>"Curated Routes."</strong></p>
                     </div>
                 </div>
             </div>
 
             <!-- Slide 6: SWOT Analysis -->
             <div class="slide">
-                 <div class="p-8 md:p-12 slide-container bg-white">
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b-4 border-bauhaus-red pb-2">SWOT Analysis</h2>
+                 <div class="p-8 md:p-12 slide-container bg-parchment">
+                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">SWOT Analysis</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-bauhaus-yellow/30 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-black mb-2">Strengths</h3>
-                            <ul class="list-disc list-inside text-sm text-black space-y-1">
+                        <div class="bg-deep-moss/20 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-deep-moss mb-2">Strengths</h3>
+                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
                                 <li>Data-driven analytical approach.</li>
                                 <li>Launching with "Gold Standard" quality.</li>
                                 <li>Broad appeal of a global scope.</li>
                             </ul>
                         </div>
-                        <div class="bg-bauhaus-red/30 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-black mb-2">Weaknesses</h3>
-                            <ul class="list-disc list-inside text-sm text-black space-y-1">
+                        <div class="bg-burnt-orange/20 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-burnt-orange mb-2">Weaknesses</h3>
+                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
                                 <li>Solo creator (time/budget constraints).</li>
                                 <li>"Cold start" problem (0 subscribers).</li>
                                 <li>Mature market with high expectations.</li>
                             </ul>
                         </div>
-                        <div class="bg-bauhaus-blue/30 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-black mb-2">Opportunities</h3>
-                            <ul class="list-disc list-inside text-sm text-black space-y-1">
+                        <div class="bg-slate-blue/20 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-slate-blue mb-2">Opportunities</h3>
+                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
                                 <li>Underserved locations with high interest.</li>
                                 <li>Format innovation (informational overlays).</li>
                                 <li>Accessible pro-grade camera tech.</li>
                             </ul>
                         </div>
-                        <div class="bg-gray-300 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-black mb-2">Threats</h3>
-                            <ul class="list-disc list-inside text-sm text-black space-y-1">
+                        <div class="bg-gray-500/20 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-gray-600 mb-2">Threats</h3>
+                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
                                 <li>Creator burnout is a major risk.</li>
                                 <li>Market saturation & algorithm changes.</li>
                                 <li>High operational costs of global travel.</li>
@@ -204,41 +209,41 @@
 
             <!-- Slide 7: Launch Blueprint -->
             <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-white">
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b-4 border-bauhaus-red pb-2">The Launch Blueprint</h2>
+                <div class="p-8 md:p-12 slide-container bg-parchment">
+                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">The Launch Blueprint</h2>
                     <div class="space-y-6">
-                        <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-black">Phase 1: Foundation (Months 1-3)</h3>
-                            <p class="mt-2 text-gray-700">Launch with a slate of 3-5 "Gold Standard" videos from top-tier locations (e.g., Tokyo, London). Implement affiliate link monetization from day one.</p>
+                        <div class="bg-white/50 p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold text-charcoal">Phase 1: Foundation (Months 1-3)</h3>
+                            <p class="mt-2 text-charcoal/80">Launch with a slate of 3-5 "Gold Standard" videos from top-tier locations (e.g., Tokyo, London). Implement affiliate link monetization from day one.</p>
                         </div>
-                        <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-black">Phase 2: Momentum (Months 4-12)</h3>
-                            <p class="mt-2 text-gray-700">Establish a consistent upload cadence (1 video/1-2 weeks). Engage deeply with the community in comments and use the Community Tab to build loyalty.</p>
+                        <div class="bg-white/50 p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold text-charcoal">Phase 2: Momentum (Months 4-12)</h3>
+                            <p class="mt-2 text-charcoal/80">Establish a consistent upload cadence (1 video/1-2 weeks). Engage deeply with the community in comments and use the Community Tab to build loyalty.</p>
                         </div>
-                        <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-black">Phase 3: Sustainability (Year 2+)</h3>
-                            <p class="mt-2 text-gray-700">Introduce direct audience support (Patreon/Ko-fi). Repurpose content into ultra-long compilations and license footage to create diverse revenue streams.</p>
+                        <div class="bg-white/50 p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold text-charcoal">Phase 3: Sustainability (Year 2+)</h3>
+                            <p class="mt-2 text-charcoal/80">Introduce direct audience support (Patreon/Ko-fi). Repurpose content into ultra-long compilations and license footage to create diverse revenue streams.</p>
                         </div>
                     </div>
                 </div>
             </div>
              <!-- Slide 8: Final Slide -->
             <div class="slide">
-                <div class="p-8 md:p-16 bg-black text-white flex flex-col items-center justify-center text-center slide-container">
+                <div class="p-8 md:p-16 bg-slate-blue text-parchment flex flex-col items-center justify-center text-center slide-container">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Questions & Next Steps</h1>
-                    <p class="text-xl text-gray-200">The route is clear. Time to start walking.</p>
+                    <p class="text-xl opacity-90">The route is clear. Time to start walking.</p>
                     <div class="mt-8">
-                         <a href="#" id="restart" class="bauhaus-yellow hover:text-white transition duration-300">Restart Presentation</a>
+                         <a href="#" id="restart" class="text-burnt-orange font-bold hover:text-parchment transition duration-300">Restart Presentation</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Navigation -->
-        <div class="bg-black p-4 flex justify-between items-center">
-            <button id="prev" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 disabled:bg-gray-800 disabled:cursor-not-allowed">Previous</button>
-            <div id="slide-counter" class="text-white text-sm"></div>
-            <button id="next" class="bg-bauhaus-red hover:opacity-90 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Next</button>
+        <div class="bg-slate-blue p-4 flex justify-between items-center">
+            <button id="prev" class="bg-slate-blue/50 hover:bg-parchment/20 text-parchment font-bold py-2 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+            <div id="slide-counter" class="text-parchment text-sm"></div>
+            <button id="next" class="bg-burnt-orange hover:opacity-90 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Next</button>
         </div>
     </div>
 
