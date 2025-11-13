@@ -3,289 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curated Routes: Channel Strategy Presentation</title>
+    <title>Towel Shop Color Palette Explorer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Comfort -->
+    <!-- Application Structure Plan: Designed a tab-based single-page application. The user's report requested "a few" palettes. This structure allows direct comparison. The main interaction is clicking a tab (e.g., "Warm Neutral," "Earthy Embrace") which dynamically updates the entire content area. This area includes: 1) A visual swatch, 2) A rationale, 3) A table with specific HEX codes (addressing user's "missing data" feedback), and 4) A live preview mockup of a product card. This provides instant, actionable feedback and directly maps to the user's goal of *deciding* on a palette. -->
+    <!-- Visualization & Content Choices: Report Info: "Warm, welcoming, home, comfort" color palettes. Goal: Present, compare, and demonstrate palettes. Viz/Presentation: 1) HTML/CSS Swatches: (Inform) Simple, clear color blocks. 2) HTML Table: (Inform) To provide specific HEX codes and roles, directly addressing user need for "necessary information." 3) Dynamic HTML/CSS Mockup: (Interact/Demo) A "product card" preview dynamically styled with JS. This is the key interaction, allowing the user to *see* the palette in a simulated e-commerce context. Justification: This structure is more useful than a static report, letting the user test and feel the palettes. Library: Vanilla JS for all state and DOM manipulation. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F1E9DB; /* Parchment */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .slide {
-            display: none;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        .palette-tab.active {
+            border-color: var(--color-accent);
+            background-color: var(--color-accent);
+            color: white;
         }
-        .slide.active {
-            display: block;
+        .palette-tab {
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
-        .slide-container {
-            min-height: 80vh;
+        .preview-card, .preview-button, .palette-swatch {
+            transition: all 0.3s ease;
         }
         
-        /* Modern Cartographer Palette */
-        .bg-slate-blue { background-color: #3D5A6C; }
-        .text-slate-blue { color: #3D5A6C; }
-        .border-slate-blue { border-color: #3D5A6C; }
-
-        .bg-parchment { background-color: #F1E9DB; }
-        .text-parchment { color: #F1E9DB; }
-
-        .bg-burnt-orange { background-color: #D96C06; }
-        .text-burnt-orange { color: #D96C06; }
-        .border-burnt-orange { border-color: #D96C06; }
-
-        .bg-deep-moss { background-color: #3A4F41; }
-        .text-deep-moss { color: #3A4F41; }
-        .border-deep-moss { border-color: #3A4F41; }
-        
-        .text-charcoal { color: #2F2F2F; }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--color-accent);
+            animation: spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
-    <div class="w-full max-w-4xl mx-auto bg-parchment rounded-2xl shadow-2xl overflow-hidden">
-        <div id="presentation-container">
-            <!-- Slide 1: Title Slide -->
-            <div class="slide active">
-                <div class="p-8 md:p-16 bg-slate-blue text-parchment flex flex-col items-center justify-center text-center slide-container">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Curated Routes</h1>
-                    <p class="text-xl md:text-2xl opacity-90">A Strategic Blueprint for YouTube Success</p>
-                    <div class="mt-8">
-                         <div class="w-24 h-2 bg-burnt-orange"></div>
-                    </div>
-                </div>
-            </div>
+<body class="bg-[#F7F3EE] text-[#4E443F]">
 
-            <!-- Slide 2: Executive Summary -->
-            <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-parchment">
-                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Executive Summary</h2>
-                    <ul class="space-y-4 text-lg text-charcoal">
-                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span>The walking tour genre is a mature, competitive market with a sophisticated audience.</span></li>
-                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span>Success hinges on meeting the "Gold Standard" of production: <strong>4K HDR, 60fps, and immersive binaural audio</strong>.</span></li>
-                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span>Viewers seek therapeutic escapism, relaxation, and meticulous trip-planning tools.</span></li>
-                        <li class="flex items-start"><span class="text-burnt-orange mr-3 mt-1">&#10148;</span><span><strong>Key Opportunity:</strong> Differentiate by blending pure ambiance with subtle, non-intrusive informational overlays to serve underserved "Planners."</span></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Towel Shop Color Palette Explorer</h1>
+            <p class="text-lg md:text-xl" id="page-subtitle">Exploring palettes that feel warm, welcoming, and comfortable.</p>
+        </header>
 
-            <!-- Slide 3: Target Audience Personas -->
-            <div class="slide">
-                 <div class="p-8 md:p-12 slide-container bg-parchment">
-                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Decoding the Viewer Psyche</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white/50 p-6 rounded-lg border-l-8 border-slate-blue shadow-md">
-                            <h3 class="text-xl font-semibold text-charcoal mb-2">1. The Ambiance Seeker</h3>
-                            <p class="text-charcoal/80">Uses videos for relaxation, stress-reduction, and sleep. <strong class="text-charcoal">Needs:</strong> Immersive, uninterrupted, high-fidelity audio-visuals.</p>
-                        </div>
-                        <div class="bg-white/50 p-6 rounded-lg border-l-8 border-burnt-orange shadow-md">
-                            <h3 class="text-xl font-semibold text-charcoal mb-2">2. The Meticulous Planner</h3>
-                            <p class="text-charcoal/80">Researches future travel. <strong class="text-charcoal">Needs:</strong> Authentic "on-the-ground" views, context, route maps, and practical tips.</p>
-                        </div>
-                        <div class="bg-white/50 p-6 rounded-lg border-l-8 border-deep-moss shadow-md">
-                            <h3 class="text-xl font-semibold text-charcoal mb-2">3. The Nostalgic Traveler</h3>
-                            <p class="text-charcoal/80">Reconnects with past locations. <strong class="text-charcoal">Needs:</strong> Authentic capture of a place's evolving character.</p>
-                        </div>
-                         <div class="bg-white/50 p-6 rounded-lg border-l-8 border-charcoal/50 shadow-md">
-                            <h3 class="text-xl font-semibold text-charcoal mb-2">4. The Tech & Gear Enthusiast</h3>
-                            <p class="text-charcoal/80">Fascinated by production quality. <strong class="text-charcoal">Needs:</strong> Technical transparency (gear lists) and top-tier execution.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12" id="palette-navigation">
+            <button class="palette-tab text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-sm" data-palette-key="neutral">
+                Warm Neutral Comfort
+            </button>
+            <button class="palette-tab text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-sm" data-palette-key="earthy">
+                Earthy Embrace
+            </button>
+            <button class="palette-tab text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-sm" data-palette-key="sunrise">
+                Soft Sunrise
+            </button>
+        </nav>
 
-            <!-- Slide 4: Competitive Landscape -->
-            <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-parchment">
-                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Competitive Landscape</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-charcoal">The Titans: Setting the Standard</h3>
-                             <p class="text-charcoal/80">Channels like <strong>VIRTUAL JAPAN, Prowalk Tours, and Nomadic Ambience</strong> dominate through geographic focus or pure ambiance, setting high audience expectations.</p>
-                        </div>
-                        <div class="overflow-x-auto">
-                           <table class="min-w-full bg-white/50 mt-2 rounded-lg shadow-md">
-                                <thead class="bg-slate-blue text-parchment">
-                                    <tr>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Channel</th>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Subscribers</th>
-                                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Avg. Views</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-charcoal">
-                                    <tr>
-                                        <td class="text-left py-3 px-4">Nomadic Ambience</td>
-                                        <td class="text-left py-3 px-4">1.3M</td>
-                                        <td class="text-left py-3 px-4">520k</td>
-                                    </tr>
-                                    <tr class="bg-slate-blue/10">
-                                        <td class="text-left py-3 px-4">Prowalk Tours</td>
-                                        <td class="text-left py-3 px-4">733k</td>
-                                        <td class="text-left py-3 px-4">345k</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left py-3 px-4">VIRTUAL JAPAN</td>
-                                        <td class="text-left py-3 px-4">589k</td>
-                                        <td class="text-left py-3 px-4">370k</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-charcoal mt-4">Key Takeaway</h3>
-                            <p class="text-charcoal/80">Success comes from hyper-specialization (location/theme) or by becoming a reliable source for high-quality global tours.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <main id="palette-display" class="bg-transparent rounded-lg">
             
-            <!-- Slide 5: Content Strategy -->
-            <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-parchment">
-                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">Content Strategy: The Formula</h2>
-                     <div class="grid md:grid-cols-2 gap-6 text-charcoal">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2">Location & Atmosphere</h3>
-                            <ul class="list-disc list-inside space-y-2 opacity-90">
-                                <li><strong>Top Tier Locations:</strong> Tokyo, London, Paris, Seoul.</li>
-                                <li><strong>Atmosphere is Key:</strong> Rain, snow, night walks, and golden hour are highly sought after.</li>
-                                <li><strong>Events:</strong> Christmas lights & Sakura season are huge drivers.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2">Video Format Mix</h3>
-                            <ul class="list-disc list-inside space-y-2 opacity-90">
-                                <li><strong>Flagship Walks (40-90 min):</strong> Core immersive content.</li>
-                                <li><strong>Ultra-Long Compilations (3-8+ hrs):</strong> Serve sleep/study audience and boost watch time.</li>
-                                <li><strong>Shorts (15-60s):</strong> Repurpose highlights for discoverability.</li>
-                            </ul>
-                        </div>
-                    </div>
-                     <div class="mt-8 bg-slate-blue/10 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-charcoal">The "Curated" Differentiator</h3>
-                        <p class="text-charcoal/90 mt-2">Implement minimalist, non-intrusive on-screen text overlays with facts, history, or context. This serves the "Planner" audience without breaking immersion for "Ambiance Seekers" — fulfilling the brand promise of <strong>"Curated Routes."</strong></p>
-                    </div>
-                </div>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
 
-            <!-- Slide 6: SWOT Analysis -->
-            <div class="slide">
-                 <div class="p-8 md:p-12 slide-container bg-parchment">
-                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">SWOT Analysis</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-deep-moss/20 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-deep-moss mb-2">Strengths</h3>
-                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
-                                <li>Data-driven analytical approach.</li>
-                                <li>Launching with "Gold Standard" quality.</li>
-                                <li>Broad appeal of a global scope.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-burnt-orange/20 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-burnt-orange mb-2">Weaknesses</h3>
-                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
-                                <li>Solo creator (time/budget constraints).</li>
-                                <li>"Cold start" problem (0 subscribers).</li>
-                                <li>Mature market with high expectations.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-slate-blue/20 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-slate-blue mb-2">Opportunities</h3>
-                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
-                                <li>Underserved locations with high interest.</li>
-                                <li>Format innovation (informational overlays).</li>
-                                <li>Accessible pro-grade camera tech.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-500/20 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-gray-600 mb-2">Threats</h3>
-                            <ul class="list-disc list-inside text-sm text-charcoal space-y-1">
-                                <li>Creator burnout is a major risk.</li>
-                                <li>Market saturation & algorithm changes.</li>
-                                <li>High operational costs of global travel.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div>
+                    <h2 id="palette-name" class="text-2xl md:text-3xl font-bold mb-3"></h2>
+                    <p id="palette-rationale" class="text-base md:text-lg mb-6"></p>
 
-            <!-- Slide 7: Launch Blueprint -->
-            <div class="slide">
-                <div class="p-8 md:p-12 slide-container bg-parchment">
-                    <h2 class="text-3xl font-bold text-charcoal mb-6 border-b-4 border-burnt-orange pb-2">The Launch Blueprint</h2>
-                    <div class="space-y-6">
-                        <div class="bg-white/50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-charcoal">Phase 1: Foundation (Months 1-3)</h3>
-                            <p class="mt-2 text-charcoal/80">Launch with a slate of 3-5 "Gold Standard" videos from top-tier locations (e.g., Tokyo, London). Implement affiliate link monetization from day one.</p>
-                        </div>
-                        <div class="bg-white/50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-charcoal">Phase 2: Momentum (Months 4-12)</h3>
-                            <p class="mt-2 text-charcoal/80">Establish a consistent upload cadence (1 video/1-2 weeks). Engage deeply with the community in comments and use the Community Tab to build loyalty.</p>
-                        </div>
-                        <div class="bg-white/50 p-6 rounded-lg shadow-sm">
-                            <h3 class="text-xl font-bold text-charcoal">Phase 3: Sustainability (Year 2+)</h3>
-                            <p class="mt-2 text-charcoal/80">Introduce direct audience support (Patreon/Ko-fi). Repurpose content into ultra-long compilations and license footage to create diverse revenue streams.</p>
-                        </div>
+                    <div id="palette-visual" class="flex h-20 md:h-24 rounded-lg overflow-hidden shadow mb-6">
                     </div>
-                </div>
-            </div>
-             <!-- Slide 8: Final Slide -->
-            <div class="slide">
-                <div class="p-8 md:p-16 bg-slate-blue text-parchment flex flex-col items-center justify-center text-center slide-container">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Questions & Next Steps</h1>
-                    <p class="text-xl opacity-90">The route is clear. Time to start walking.</p>
-                    <div class="mt-8">
-                         <a href="#" id="restart" class="text-burnt-orange font-bold hover:text-parchment transition duration-300">Restart Presentation</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Navigation -->
-        <div class="bg-slate-blue p-4 flex justify-between items-center">
-            <button id="prev" class="bg-slate-blue/50 hover:bg-parchment/20 text-parchment font-bold py-2 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
-            <div id="slide-counter" class="text-parchment text-sm"></div>
-            <button id="next" class="bg-burnt-orange hover:opacity-90 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Next</button>
-        </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Color Details</h3>
+                    <div class="overflow-x-auto rounded-lg shadow-md">
+                        <table id="palette-table" class="w-full min-w-full text-left">
+                            <thead class="border-b">
+                                <tr>
+                                    <th class="p-3 md:p-4 text-sm font-semibold uppercase tracking-wider">Role</th>
+                                    <th class="p-3 md:p-4 text-sm font-semibold uppercase tracking-wider">Hex Code</th>
+                                    <th class="p-3 md:p-4 text-sm font-semibold uppercase tracking-wider">Preview</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Live Preview</h3>
+                    <p class="text-base mb-4">See how this palette looks on a sample product card. The entire page background and text have also updated.</p>
+                    
+                    <div class="mb-4">
+                        <button id="gemini-generate-btn" class="preview-button w-full py-2 px-4 rounded-lg font-bold text-white shadow-md transition-all duration-300">
+                            ✨ Suggest Product Details
+                        </button>
+                        <div id="gemini-loading" class="hidden flex justify-center items-center p-4">
+                            <div class="spinner"></div>
+                            <span class="ml-3 font-medium" style="color: var(--color-text);">Generating...</span>
+                        </div>
+                    </div>
+
+                    <div id="preview-card-container" class="p-6 rounded-lg" style="transition: background-color 0.3s ease;">
+                        <div id="preview-card" class="preview-card max-w-sm mx-auto rounded-xl shadow-lg overflow-hidden">
+                            <img src="https://placehold.co/600x400/EFEAE4/4E443F?text=Cozy+Towel" alt="Placeholder image of a towel" class="w-full h-48 object-cover" id="preview-image">
+                            <div class="p-6">
+                                <h4 id="preview-title" class="preview-text text-xl font-bold mb-2">Plush Cotton Towel</h4>
+                                <p id="preview-text" class="preview-text text-base mb-4">Incredibly soft and absorbent, this towel brings spa-like comfort to your home.</p>
+                                <button id="preview-button" class="preview-button w-full py-2 px-4 rounded-lg font-bold text-white shadow-md">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
     </div>
 
     <script>
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prev');
-        const nextBtn = document.getElementById('next');
-        const restartBtn = document.getElementById('restart');
-        const slideCounter = document.getElementById('slide-counter');
-        let currentSlide = 0;
+        const palettes = {
+            'neutral': {
+                name: 'Warm Neutral Comfort',
+                rationale: 'This palette is the essence of "warm and welcoming." It uses soft, creamy beige and taupe, grounded by a dark umber for text. The muted terracotta accent adds a touch of warmth without being overpowering, creating a classic, cozy, and high-end feel.',
+                colors: {
+                    bg: '#F7F3EE',
+                    card: '#EFEAE4',
+                    accent: '#D58C6A',
+                    text: '#4E443F',
+                    accentText: '#FFFFFF',
+                    placeholder: 'EFEAE4/4E443F'
+                },
+                roles: [
+                    { role: 'Main Background', hex: '#F7F3EE' },
+                    { role: 'Card/Section BG', hex: '#EFEAE4' },
+                    { role: 'Button/Accent', hex: '#D58C6A' },
+                    { role: 'Primary Text', hex: '#4E443F' }
+                ]
+            },
+            'earthy': {
+                name: 'Earthy Embrace',
+                rationale: 'Connecting "home" and "comfort" to nature, this palette feels organic and serene. A calm sage green pairs with a rich walnut brown for a grounded, spa-like atmosphere. It feels clean, natural, and reassuring.',
+                colors: {
+                    bg: '#FCFAF8',
+                    card: '#D4D8C4',
+                    accent: '#8A6E59',
+                    text: '#3C3632',
+                    accentText: '#FFFFFF',
+                    placeholder: 'D4D8C4/3C3632'
+                },
+                roles: [
+                    { role: 'Main Background', hex: '#FCFAF8' },
+                    { role: 'Card/Section BG', hex: '#D4D8C4' },
+                    { role: 'Button/Accent', hex: '#8A6E59' },
+                    { role: 'Primary Text', hex: '#3C3632' }
+                ]
+            },
+            'sunrise': {
+                name: 'Soft Sunrise',
+                rationale: 'This palette feels like a literal "warm hug." Soft, dusty peach and rose tones are gentle and inviting. A rich, warm coral accent provides energy, while a soft grey text keeps it modern and readable. It\'s cheerful, comfortable, and very welcoming.',
+                colors: {
+                    bg: '#FFFBF5',
+                    card: '#F9EAE1',
+                    accent: '#E8A087',
+                    text: '#5A524F',
+                    accentText: '#FFFFFF',
+                    placeholder: 'F9EAE1/5A524F'
+                },
+                roles: [
+                    { role: 'Main Background', hex: '#FFFBF5' },
+                    { role: 'Card/Section BG', hex: '#F9EAE1' },
+                    { role: 'Button/Accent', hex: '#E8A087' },
+                    { role: 'Primary Text', hex: '#5A524F' }
+                ]
+            }
+        };
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[n].classList.add('active');
-            currentSlide = n;
-            updateNav();
+        let currentPaletteKey = 'neutral';
+
+        const dom = {
+            body: document.body,
+            pageSubtitle: document.getElementById('page-subtitle'),
+            nav: document.getElementById('palette-navigation'),
+            tabs: document.querySelectorAll('.palette-tab'),
+            name: document.getElementById('palette-name'),
+            rationale: document.getElementById('palette-rationale'),
+            visual: document.getElementById('palette-visual'),
+            tableBody: document.getElementById('palette-table').querySelector('tbody'),
+            previewCardContainer: document.getElementById('preview-card-container'),
+            previewCard: document.getElementById('preview-card'),
+            previewImage: document.getElementById('preview-image'),
+            previewTitle: document.getElementById('preview-title'),
+            previewText: document.getElementById('preview-text'),
+            previewButton: document.getElementById('preview-button'),
+            geminiButton: document.getElementById('gemini-generate-btn'),
+            geminiLoading: document.getElementById('gemini-loading')
+        };
+
+        function updatePalette(paletteKey) {
+            currentPaletteKey = paletteKey;
+            const palette = palettes[paletteKey];
+            if (!palette) return;
+
+            const { name, rationale, colors, roles, placeholder } = palette;
+            
+            document.documentElement.style.setProperty('--color-accent', colors.accent);
+
+            dom.body.style.backgroundColor = colors.bg;
+            dom.body.style.color = colors.text;
+            dom.pageSubtitle.style.color = colors.text;
+            dom.geminiLoading.querySelector('span').style.color = colors.text;
+
+            dom.tabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.backgroundColor = colors.card;
+                tab.style.color = colors.text;
+                if (tab.dataset.paletteKey === paletteKey) {
+                    tab.classList.add('active');
+                    tab.style.backgroundColor = colors.accent;
+                    tab.style.color = colors.accentText;
+                }
+            });
+
+            dom.name.textContent = name;
+            dom.rationale.textContent = rationale;
+            dom.rationale.style.color = colors.text;
+
+            dom.visual.innerHTML = `
+                <div class="palette-swatch w-1/4 h-full" style="background-color: ${colors.bg}"></div>
+                <div class="palette-swatch w-1/4 h-full" style="background-color: ${colors.card}"></div>
+                <div class="palette-swatch w-1/4 h-full" style="background-color: ${colors.accent}"></div>
+                <div class="palette-swatch w-1/4 h-full" style="background-color: ${colors.text}"></div>
+            `;
+
+            dom.tableBody.innerHTML = roles.map(color => `
+                <tr class="border-b" style="background-color: ${colors.card}; color: ${colors.text}; border-color: ${colors.bg};">
+                    <td class="p-3 md:p-4 font-medium">${color.role}</td>
+                    <td class="p-3 md:p-4 font-mono">${color.hex}</td>
+                    <td class="p-3 md:p-4"><div class="w-6 h-6 rounded-full border" style="background-color: ${color.hex}; border-color: ${colors.text}20;"></div></td>
+                </tr>
+            `).join('');
+            
+            dom.tableBody.closest('table').style.backgroundColor = colors.card;
+            dom.tableBody.closest('table').querySelector('thead').style.backgroundColor = colors.bg;
+            dom.tableBody.closest('table').querySelector('thead').style.color = colors.text;
+
+            dom.previewCardContainer.style.backgroundColor = colors.bg;
+            dom.previewCard.style.backgroundColor = colors.card;
+            dom.previewTitle.style.color = colors.text;
+            dom.previewText.style.color = colors.text;
+            dom.previewButton.style.backgroundColor = colors.accent;
+            dom.previewButton.style.color = colors.accentText;
+            dom.geminiButton.style.backgroundColor = colors.accent;
+            dom.geminiButton.style.color = colors.accentText;
+            dom.previewImage.src = `https://placehold.co/600x400/${placeholder}?text=Cozy+Towel`;
         }
 
-        function updateNav() {
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === slides.length - 1;
-            slideCounter.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+        document.addEventListener('DOMContentLoaded', () => {
+            dom.nav.addEventListener('click', (e) => {
+                if (e.target.classList.contains('palette-tab')) {
+                    updatePalette(e.target.dataset.paletteKey);
+                }
+            });
+            
+            dom.geminiButton.addEventListener('click', handleGeminiGenerate);
+            
+            updatePalette('neutral');
+        });
+
+        async function fetchWithBackoff(url, options, retries = 5, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.ok) return response;
+                    if ((response.status === 429 || response.status >= 500) && i < retries - 1) {
+                        // Throttling or server error, wait and retry
+                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                    } else {
+                        // Client-side error or final retry, return response to be handled
+                        return response;
+                    }
+                } catch (error) {
+                    // Network error
+                    if (i === retries - 1) throw error; // Rethrow last error
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                }
+            }
+            throw new Error('API call failed after all retries.');
         }
 
-        nextBtn.addEventListener('click', () => {
-            if (currentSlide < slides.length - 1) {
-                showSlide(currentSlide + 1);
+        async function callGeminiApi(userQuery) {
+            const apiKey = ""; // Per instructions, leave empty.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const responseSchema = {
+                type: "OBJECT",
+                properties: {
+                    productName: { "type": "STRING" },
+                    description: { "type": "STRING" }
+                },
+                required: ["productName", "description"]
+            };
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: responseSchema
+                }
+            };
+
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+
+            const response = await fetchWithBackoff(apiUrl, options);
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
             }
-        });
 
-        prevBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
+            const result = await response.json();
+            
+            const candidate = result.candidates?.[0];
+            if (candidate && candidate.content?.parts?.[0]?.text) {
+                const jsonText = candidate.content.parts[0].text;
+                return JSON.parse(jsonText);
+            } else {
+                throw new Error("Invalid response structure from API.");
             }
-        });
+        }
 
-        restartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSlide(0);
-        });
+        async function handleGeminiGenerate() {
+            dom.geminiButton.classList.add('hidden');
+            dom.geminiLoading.classList.remove('hidden');
+            
+            // Store default text to revert to on error
+            const defaultTitle = "Plush Cotton Towel";
+            const defaultText = "Incredibly soft and absorbent, this towel brings spa-like comfort to your home.";
 
-        showSlide(0);
+            try {
+                const palette = palettes[currentPaletteKey];
+                const userQuery = `You are a creative marketing assistant for a luxury towel shop. The current color palette is "${palette.name}". The feeling is: "${palette.rationale}". Based on this, generate a new, catchy product name and a short, evocative product description (about 1-2 sentences) for a plush cotton towel.`;
+
+                const data = await callGeminiApi(userQuery);
+
+                if (data.productName && data.description) {
+                    dom.previewTitle.textContent = data.productName;
+                    dom.previewText.textContent = data.description;
+                } else {
+                    // Handle cases where JSON is valid but missing fields
+                    dom.previewTitle.textContent = defaultTitle;
+                    dom.previewText.textContent = defaultText;
+                }
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                // Revert to default text on error
+                dom.previewTitle.textContent = defaultTitle;
+                dom.previewText.textContent = `Error generating content. ${defaultText}`;
+            } finally {
+                dom.geminiButton.classList.remove('hidden');
+                dom.geminiLoading.classList.add('hidden');
+            }
+        }
+
     </script>
 </body>
 </html>
