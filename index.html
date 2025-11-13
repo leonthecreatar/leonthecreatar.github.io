@@ -61,6 +61,12 @@
             <button class="palette-tab text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-sm" data-palette-key="sunrise">
                 Soft Sunrise
             </button>
+            <button class="palette-tab text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-sm" data-palette-key="cream">
+                Creamy Cashmere
+            </button>
+            <button class="palette-tab text-sm md:text-base font-medium py-2 px-4 rounded-full shadow-sm" data-palette-key="sunlit">
+                Sunlit Linen
+            </button>
         </nav>
 
         <main id="palette-display" class="bg-transparent rounded-lg">
@@ -176,6 +182,42 @@
                     { role: 'Card/Section BG', hex: '#F9EAE1' },
                     { role: 'Button/Accent', hex: '#E8A087' },
                     { role: 'Primary Text', hex: '#5A524F' }
+                ]
+            },
+            'cream': {
+                name: 'Creamy Cashmere',
+                rationale: 'This palette is pure, understated luxury. It builds on layers of soft, warm cream and ivory, creating a sophisticated and calming "hug." The buttery yellow accent is gentle and uplifting, perfect for a high-end, minimalist feel.',
+                colors: {
+                    bg: '#FCFAF6',
+                    card: '#F5EFE6',
+                    accent: '#E8D5A1',
+                    text: '#5D554B',
+                    accentText: '#4A4642',
+                    placeholder: 'F5EFE6/5D554B'
+                },
+                roles: [
+                    { role: 'Main Background', hex: '#FCFAF6' },
+                    { role: 'Card/Section BG', hex: '#F5EFE6' },
+                    { role: 'Button/Accent', hex: '#E8D5A1' },
+                    { role: 'Primary Text', hex: '#5D554B' }
+                ]
+            },
+            'sunlit': {
+                name: 'Sunlit Linen',
+                rationale: 'This palette feels like a cheerful, sunny morning. It combines a light, buttery cream with a warmer, muted gold accent. It\'s optimistic, welcoming, and instantly conveys "home and comfort" with a bright, happy energy.',
+                colors: {
+                    bg: '#FFFDF4',
+                    card: '#F3EADF',
+                    accent: '#DDAA5E',
+                    text: '#4A4642',
+                    accentText: '#FFFFFF',
+                    placeholder: 'F3EADF/4A4642'
+                },
+                roles: [
+                    { role: 'Main Background', hex: '#FFFDF4' },
+                    { role: 'Card/Section BG', hex: '#F3EADF' },
+                    { role: 'Button/Accent', hex: '#DDAA5E' },
+                    { role: 'Primary Text', hex: '#4A4642' }
                 ]
             }
         };
@@ -358,7 +400,7 @@
                     // Handle cases where JSON is valid but missing fields
                     dom.previewTitle.textContent = defaultTitle;
                     dom.previewText.textContent = defaultText;
-                }
+D                }
             } catch (error) {
                 console.error("Gemini API call failed:", error);
                 // Revert to default text on error
